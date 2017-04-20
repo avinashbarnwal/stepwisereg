@@ -42,12 +42,10 @@ def forward_selected(data,null,full,respose,step):
     start            = set(null_predic)
     remaining        = set(domain)
     selected         = null_predic
-    response         ='T_Y'
     current_score, best_new_score = 10000000, 10000000
     score_bic        =[]
     variable_added   =[]
     flag=0
-    step=2
     while (remaining and current_score == best_new_score and step >0):
         scores_with_candidates = []
         for candidate in remaining:
