@@ -67,5 +67,7 @@ def forward_selected(data,null,full,respose,step):
     model = smf.ols(formula, data).fit()
     return model
 
-
+#R like null and full models
+#null='y~1+var1+var2'
+#full= 'y~1+var1+var2+var3+var4'
 
