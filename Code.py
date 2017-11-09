@@ -12,7 +12,7 @@ def reduce_concat(x, sep=""):
     return functools.reduce(lambda x, y: str(x) + sep + str(y), x)
 
 
-def forward_selected(data,null_formula,full_formula,respose,step):
+def forward_selected(data,null_formula,full_formula,response,step):
     """Linear model designed by forward selection.
 
     Parameters:
@@ -42,7 +42,6 @@ def forward_selected(data,null_formula,full_formula,respose,step):
     start            = set(null_predic)
     remaining        = set(domain)
     selected         = null_predic
-    response         ='T_Y'
     current_score, best_new_score = 10000000, 10000000
     score_bic        =[]
     variable_added   =[]
