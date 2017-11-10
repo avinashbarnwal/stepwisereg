@@ -1,9 +1,7 @@
 import statsmodels.formula.api as smf
-import rpy2.robjects as robjects
 import numpy as np
 import pandas as pd
 import functools
-from rpy2.robjects import pandas2ri
 import re
 
 
