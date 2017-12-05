@@ -10,9 +10,6 @@ def reduce_concat(x, sep=""):
     return functools.reduce(lambda x, y: str(x) + sep + str(y), x)
 
 
-def reduce_concat(x, sep=""):
-    return functools.reduce(lambda x, y: str(x) + sep + str(y), x)
-
 def forward_selected(data,null_formula,full_formula,response,step,intercept):
     """Linear model designed by forward selection.
     Parameters:
