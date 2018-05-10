@@ -120,5 +120,4 @@ model           = forward_selected(train,null,full,'OS_MONTHS',50,0)
 model_param     = model.params
 print(model.summary())
 
-train_predict = model.predict(df_LUAD_TRAIN)
-test_predict = model.predict(df_LUAD_TEST)
+test_predict = model.predict(test)
