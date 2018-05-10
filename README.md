@@ -4,4 +4,4 @@ Currently Statmodels package in python doesn't have stepwise regression, so i th
 
 Idea is to build like R-Stepwise having null and full models formula.
 
-I am also added complete example in code.py using test_data.csv . Here dependent variable is "OS_MONTHS" and we can change it based on dataset.
+I have also added complete example in code.py using test_data.csv . Here dependent variable is "OS_MONTHS" and we can change it based on dataset.
