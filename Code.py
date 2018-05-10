@@ -1,14 +1,62 @@
-import statsmodels.formula.api as smf
+# coding: utf-8
+
+# In[8]:
+
 import numpy as np
+import sklearn
+import warnings
+import os
+warnings.filterwarnings('ignore')
+from sklearn import datasets, linear_model
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.datasets import make_regression
+from patsy import dmatrices
+import statsmodels.formula.api as smf
 import pandas as pd
 import functools
 import re
 
 
+path = '/data_path'
+os.chdir(path)
+
+data = pd.read_csv("test_data.csv")
+###########Train Dataset and Test Dataset Creation########
+msk = np.random.rand(len(data_LUAD)) < 0.8
+train = data[msk]
+test = data[~msk]
+
+#########Independent Variables are from 2:102 and 106 has Dependent Variable########
+X_train = data.iloc[:,2:102]
+Y_train = 10*data.iloc[:,106]
+
+###########Changes in the name of columns######
+columns         = list(X_train.columns.values)
+columns_changes = map(lambda x:x.replace("-", "_"),columns)
+X_train.columns = columns_changes
+train = pd.concat([X_train,Y_train],axis=1)
+
+X_test = test.iloc[:,2:102]
+Y_test = 10*test.iloc[:,106]
+
+columns_test         = list(X_test.columns.values)
+columns_changes_test = map(lambda x:x.replace("-", "_"),columns_test)
+X_test.columns = columns_changes_test
+test = pd.concat([X_test,Y_test],axis=1)
+
+##Creating the features concatenation
+features = "+".join(columns_changes)
+
+##Creating Null and Full formula
+var1 = columns_changes[0]  
+null = 'OS_MONTHS ~' + var1
+full = 'OS_MONTHS ~' + features
+
+
+# In[10]:
 
 def reduce_concat(x, sep=""):
     return functools.reduce(lambda x, y: str(x) + sep + str(y), x)
-
 
 def forward_selected(data,null_formula,full_formula,response,step,intercept):
     """Linear model designed by forward selection.
@@ -66,11 +114,11 @@ def forward_selected(data,null_formula,full_formula,response,step,intercept):
         formula = formula + "-1"
     model = smf.ols(formula, data).fit()
     return model
-    
-    
-    ##R like null and full models
-    #null='y~1+var1'
-    #full='y~1+var1+var2'
-    
-    
-    
+
+model           = forward_selected(train,null,full,'OS_MONTHS',50,0)
+
+model_param     = model.params
+print(model.summary())
+
+train_predict = model.predict(df_LUAD_TRAIN)
+test_predict = model.predict(df_LUAD_TEST)
