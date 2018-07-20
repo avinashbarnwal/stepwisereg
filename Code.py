@@ -22,7 +22,7 @@ os.chdir(path)
 
 data = pd.read_csv("test_data.csv")
 ###########Train Dataset and Test Dataset Creation########
-msk = np.random.rand(len(data_LUAD)) < 0.8
+msk = np.random.rand(len(data)) < 0.8
 train = data[msk]
 test = data[~msk]
 
