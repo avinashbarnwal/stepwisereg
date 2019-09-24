@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from distutils.core import setup
+
 setup(
     name              = 'stepwisereg',
     packages          = ['stepwisereg'],
-    version           = '0.1.11',
+    version           = '0.1.0',
     description       = 'Stepwise Regression in Python',
     long_description  = 'Forward Stepwise Regression in Python like R using AIC',
     author = 'Avinash Barnwal',
@@ -12,8 +13,8 @@ setup(
     maintainer='Avinash Barnwal',
     maintainer_email='avinashbarnwal123@gmail.com',
     install_requires=[
-        'numpy',
-        'pandas',
+    'numpy',
+    'pandas',
 	'sklearn',
 	'patsy',
 	'statsmodel',

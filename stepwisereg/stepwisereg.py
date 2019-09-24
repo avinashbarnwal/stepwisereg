@@ -17,13 +17,14 @@ warnings.filterwarnings('ignore')
 
 class stepwisereg:
 
-    def __init__(self):
-        pass
+    def __init__(self,step,fit_intercept):
+        self.step = step
+        self.fit_intercept = fit_intercept
 
     def reduce_concat(self,x, sep=""):
         return functools.reduce(lambda x, y: str(x) + sep + str(y), x)
 
-    def forward_selected(self,data,null_formula,full_formula,response,step,intercept):
+    def fit(self,data,null_formula,full_formula,response):
 
         """Linear model designed by forward selection.
         Parameters:
@@ -46,20 +47,18 @@ class stepwisereg:
         full_predic      = full_predic_com[1:len(full_predic_com)]
         indices          = [i for i,id in enumerate(full_predic) if id not in null_predic]
         domain           = [full_predic[i] for i in indices]
-
         start            = set(null_predic)
         remaining        = set(domain)
         selected         = null_predic
-        current_score, best_new_score = 10000000, 10000000
-        score_bic        = []
+        current_score, best_new_score = float('inf'), float('inf')
+        score_selected   = []
         variable_added   = []
-        flag=0
-        step=2
+
         while (remaining and current_score == best_new_score and step >0):
             scores_with_candidates = []
             for candidate in remaining:
                 formula = "{} ~ {}".format(response,' + '.join(selected + [candidate]))
-                if intercept ==1:
+                if self.fit_intercept == 0:
                     formula = formula + "-1"
                 score = smf.ols(formula, data).fit().aic
                 scores_with_candidates.append((score, candidate))
@@ -68,12 +67,12 @@ class stepwisereg:
             if current_score > best_new_score:
                 remaining.remove(best_candidate)
                 selected.append(best_candidate)
-                score_bic.append(best_new_score)
+                score_selected.append(best_new_score)
                 variable_added.append(best_candidate)
                 current_score = best_new_score
             step=step-1
         formula = "{} ~ {}".format(response,' + '.join(selected))
-        if intercept ==1:
+        if self.fit_intercept == 0:
             formula = formula + "-1"
         model = smf.ols(formula, data).fit()
         return model
