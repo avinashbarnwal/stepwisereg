@@ -1,5 +1,8 @@
 import pandas as pd
-from stepwisereg import *
+import stepwisereg
+import numpy as np
+
+
 
 data = pd.read_csv("lung_cancer.csv")
 ###########Train Dataset and Test Dataset Creation########
@@ -14,7 +17,7 @@ Y_train = 10*data.iloc[:,106]
 
 ###########Changes in the name of columns######
 columns         = list(X_train.columns.values)
-columns_changes = map(lambda x:x.replace("-", "_"),columns)
+columns_changes = list(map(lambda x:x.replace("-", "_"),columns))
 X_train.columns = columns_changes
 train = pd.concat([X_train,Y_train],axis=1)
 
@@ -34,7 +37,7 @@ var1 = columns_changes[0]
 null = 'OS_MONTHS ~' + var1
 full = 'OS_MONTHS ~' + features
 
-model           = stepwisereg(100,1)
+model           = stepwisereg.stepwise(5,1)
 model_fit       = model.fit(train,null,full,'OS_MONTHS')
 model_param     = model_fit.params
 test_predict    = model_fit.predict(test)
