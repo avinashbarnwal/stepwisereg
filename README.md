@@ -1,4 +1,4 @@
-# Stepwise-Regression-Python
+# Stepwise-Regression
 
 
 [![PyPI version](https://badge.fury.io/py/stepwisereg.svg)](https://badge.fury.io/py/stepwisereg)
