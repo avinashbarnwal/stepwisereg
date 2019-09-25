@@ -1,4 +1,6 @@
-# Python-Stepwise-Regression
+# Stepwise-Regression-Python
+
+[![PyPI version](https://badge.fury.io/py/stepwisereg.svg)](https://badge.fury.io/py/stepwisereg)
 
 Currently Statmodels package in python doesn't have stepwise regression, so i thought why not we create it. I have implemented using AIC and BIC and it has been motivated from http://trevor-smith.github.io/stepwise-post/.
 
