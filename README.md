@@ -7,7 +7,7 @@ Stepwise Regression in Python.
 
 # Table of Contents
 
-* About Stepwisereg
+* [About Stepwisereg](https://github.com/avinashbarnwal/stepwisereg/blob/master/README.md#about-stepwisereg)
 * Codemap
 * Installation
 * Quick Start
