@@ -22,8 +22,9 @@ Sklearn doesn't support stepwise regression. This package implements stepwise re
 # Codemap
 
 # Installation
-
+```
 pip install stepwisereg
+```
 
 # Quick Start
 
