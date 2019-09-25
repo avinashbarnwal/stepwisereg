@@ -41,4 +41,3 @@ model           = stepwisereg.stepwise(5,1)
 model_fit       = model.fit(train,null,full,'OS_MONTHS')
 model_param     = model_fit.params
 test_predict    = model_fit.predict(test)
-print(model_fit.summary())

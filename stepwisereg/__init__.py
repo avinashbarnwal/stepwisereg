@@ -1,5 +1,5 @@
   
 # -*- coding: utf-8 -*-
 
-from .stepwisereg import *
+from stepwisereg.stepwisereg import stepwise
 
