@@ -17,7 +17,7 @@ Stepwise Regression in Python.
 
 # About Stepwisereg
 
-Sklearn doesn't support stepwise regression. This package implements stepwise regression using aic I have implemented using AIC and it has been motivated from http://trevor-smith.github.io/stepwise-post/. It is to similar to R-Stepwise having null and full models formula.
+Sklearn doesn't support stepwise regression. This package implements stepwise regression using aic. I have implemented using AIC and it has been motivated from http://trevor-smith.github.io/stepwise-post/. It is to similar to R-Stepwise having null and full models formula.
 
 # Codemap
 
